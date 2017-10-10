@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.uu.udemo.anr.AnrActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_time"
+        android:hint="输入主线程睡眠时间"
+        android:inputType="numberDecimal"
+        android:digits="1234567890"
+        />
+
+    <Button
+        android:id="@+id/btn_anr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="主线程开始睡眠 10秒"
+        />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试响应"
+        />
+
+</LinearLayout>
