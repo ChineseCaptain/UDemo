@@ -42,6 +42,32 @@
             android:textAllCaps="false"
             android:text="Async"
             />
+
+        <Button
+            android:id="@+id/btn_change_locale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="切换系统语言"
+            android:background="@drawable/bkg"
+            />
+
+        <Button
+            android:id="@+id/btn_constrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="ConstrainLayout"
+            android:background="@drawable/bkg"
+            />
+
+        <Button
+            android:id="@+id/btn_property"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="属性动画"
+            />
     </LinearLayout>
 
 </ScrollView>

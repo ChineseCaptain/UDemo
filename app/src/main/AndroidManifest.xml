@@ -3,13 +3,17 @@
     package="com.uu.udemo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
+    <!-- <uses-permission android:name="android.permission.GRANT_RUNTIME_PERMISSIONS"/> -->
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:sharedUserId="android.uid.system"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -22,7 +26,13 @@
         <activity android:name=".RecyclerSnap.RecyclerSnapActivity" />
         <activity android:name=".anr.AnrActivity" />
         <activity android:name=".loader.LoaderActivity" />
-        <activity android:name=".async.AsyncActivity"></activity>
+        <activity android:name=".async.AsyncActivity" />
+        <activity
+            android:name=".locale.LocaleActivity"
+            android:configChanges="locale"
+            android:exported="true" />
+        <activity android:name=".constrain.ConstrainActivity" />
+        <activity android:name=".animator.PropertyAnimatorActivity"></activity>
     </application>
 
 </manifest>
