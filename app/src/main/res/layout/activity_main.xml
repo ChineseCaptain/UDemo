@@ -68,6 +68,14 @@
             android:textAllCaps="false"
             android:text="属性动画"
             />
+
+        <Button
+            android:id="@+id/btn_transition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="过渡动画"
+            />
     </LinearLayout>
 
 </ScrollView>

@@ -32,7 +32,8 @@
             android:configChanges="locale"
             android:exported="true" />
         <activity android:name=".constrain.ConstrainActivity" />
-        <activity android:name=".animator.PropertyAnimatorActivity"></activity>
+        <activity android:name=".animator.PropertyAnimatorActivity" />
+        <activity android:name=".transition.TransitionActivity"></activity>
     </application>
 
 </manifest>
