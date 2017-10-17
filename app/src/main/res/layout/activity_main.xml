@@ -84,6 +84,14 @@
             android:textAllCaps="false"
             android:text="小米推送"
             />
+
+        <Button
+            android:id="@+id/btn_recents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="RecentViews"
+            />
     </LinearLayout>
 
 </ScrollView>
