@@ -17,6 +17,7 @@ import com.uu.udemo.async.AsyncActivity;
 import com.uu.udemo.constrain.ConstrainActivity;
 import com.uu.udemo.loader.LoaderActivity;
 import com.uu.udemo.locale.LocaleActivity;
+import com.uu.udemo.push.mi.MiPushActivity;
 import com.uu.udemo.transition.TransitionActivity;
 
 import butterknife.BindView;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.btn_snap, R.id.btn_anr, R.id.btn_loader, R.id.btn_async, R.id.btn_change_locale,
-    R.id.btn_constrain, R.id.btn_property, R.id.btn_transition})
+    R.id.btn_constrain, R.id.btn_property, R.id.btn_transition, R.id.btn_mi_push})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_snap:
@@ -72,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_transition:
                 Intent itTransition = new Intent(this, TransitionActivity.class);
                 startActivity(itTransition);
+                break;
+            case R.id.btn_mi_push:
+                Intent itMiPush = new Intent(this, MiPushActivity.class);
+                startActivity(itMiPush);
                 break;
         }
     }

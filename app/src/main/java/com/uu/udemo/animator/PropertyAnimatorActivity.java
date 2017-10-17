@@ -35,6 +35,7 @@ public class PropertyAnimatorActivity extends AppCompatActivity {
         AnimatorSet animatorSet = new AnimatorSet();
         //第三步：设置动画播放顺序
         animatorSet.playSequentially(animator1, animator2);
+//        animatorSet.play();
         //第四步：开始动画
         animatorSet.start();
     }
