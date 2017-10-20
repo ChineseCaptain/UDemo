@@ -2,8 +2,6 @@ package com.uu.udemo;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +15,9 @@ import com.uu.udemo.async.AsyncActivity;
 import com.uu.udemo.constrain.ConstrainActivity;
 import com.uu.udemo.loader.LoaderActivity;
 import com.uu.udemo.locale.LocaleActivity;
-import com.uu.udemo.recents.RecentsActivity;
+import com.uu.udemo.push.mi.MiPushActivity;
+import com.uu.udemo.stackImage.StackImageActivity;
+import com.uu.udemo.stackview.StackViewActivity;
 import com.uu.udemo.transition.TransitionActivity;
 
 import butterknife.BindView;
@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.btn_snap, R.id.btn_anr, R.id.btn_loader, R.id.btn_async, R.id.btn_change_locale,
-    R.id.btn_constrain, R.id.btn_property, R.id.btn_transition, R.id.btn_mi_push, R.id.btn_recents})
+    R.id.btn_constrain, R.id.btn_property, R.id.btn_transition, R.id.btn_mi_push, R.id.btn_stack,
+            R.id.btn_recents, R.id.btn_stack_image})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_snap:
@@ -74,13 +75,21 @@ public class MainActivity extends AppCompatActivity {
                 Intent itTransition = new Intent(this, TransitionActivity.class);
                 startActivity(itTransition);
                 break;
-//            case R.id.btn_mi_push:
-//                Intent itMiPush = new Intent(this, MiPushActivity.class);
-//                startActivity(itMiPush);
-//                break;
-            case R.id.btn_recents:
-                Intent itMiPush = new Intent(this, RecentsActivity.class);
+            case R.id.btn_mi_push:
+                Intent itMiPush = new Intent(this, MiPushActivity.class);
                 startActivity(itMiPush);
+                break;
+            case R.id.btn_recents:
+//                Intent itMiPush = new Intent(this, RecentsActivity.class);
+//                startActivity(itMiPush);
+                break;
+            case R.id.btn_stack:
+                Intent itStack = new Intent(this, StackViewActivity.class);
+                startActivity(itStack);
+                break;
+            case R.id.btn_stack_image:
+                Intent itStackImage = new Intent(this, StackImageActivity.class);
+                startActivity(itStackImage);
                 break;
         }
     }

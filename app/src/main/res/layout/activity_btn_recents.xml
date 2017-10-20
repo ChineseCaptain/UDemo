@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.uu.udemo.recents.RecentsActivity">
 
-    <com.uu.udemo.recents.RecentsView
+    <com.uu.udemo.recents.views.RecentsView
         android:id="@+id/recents_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true">
 
-    </com.uu.udemo.recents.RecentsView>
+    </com.uu.udemo.recents.views.RecentsView>
 
 </android.support.constraint.ConstraintLayout>

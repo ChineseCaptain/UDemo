@@ -121,7 +121,8 @@ public class IosTaskLayoutManger extends RecyclerView.LayoutManager {
         mStartY = Math.round((getVerticalSpace() - mDecoratedChildHeight) *1.0f / 2);
 
         float offset = mStartX;
-        for (int i = 0; i < getItemCount(); i++) { //存储所有item具体位置
+        //存储所有item具体位置
+        for (int i = 0; i < getItemCount(); i++) {
             Rect frame = mAllItemFrames.get(i);
             if (frame == null) {
                 frame = new Rect();
@@ -131,6 +132,7 @@ public class IosTaskLayoutManger extends RecyclerView.LayoutManager {
             mHasAttachedItems.put(i, false);
             offset = offset + getIntervalDistance(-1); //原始位置累加，否则越后面误差越大
         }
+//        mAllItemFrames = layoutChildAlgorithm.computeStackRects();
 
         detachAndScrapAttachedViews(recycler); //在布局之前，将所有的子View先Detach掉，放入到Scrap缓存中
         mSelectPosition = getChildCount()-1;//默认选中最后一个
@@ -567,12 +569,6 @@ public class IosTaskLayoutManger extends RecyclerView.LayoutManager {
             itemView.setAlpha(alpha);
             Log.i("uu", "Alpha: "+alpha);
         }
-//        Log.i("uu", "viewWidth："+viewWidth);
-//        Log.i("uu", "virtualItemWidth："+virtualItemWidth);
-//        Log.i("uu", "ratio："+ratio);
-//        Log.i("uu", "centerX："+centerX);
-//        Log.i("uu", "offset："+offset);
-//        Log.i("uu", "scale："+scale);
     }
 
     private void computeMaterial() {

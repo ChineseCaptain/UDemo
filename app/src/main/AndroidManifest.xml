@@ -104,7 +104,9 @@
             </intent-filter>
         </receiver>
         <!-- 配置小米推送 end -->
-        <activity android:name=".recents.RecentsActivity"></activity>
+        <activity android:name=".stackview.StackViewActivity" />
+        <activity android:name=".recents.RecentsActivity" />
+        <activity android:name=".stackImage.StackImageActivity"></activity>
     </application>
 
 </manifest>

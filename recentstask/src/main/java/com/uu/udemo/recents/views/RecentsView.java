@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uu.udemo.recents;
+package com.uu.udemo.recents.views;
 
 import android.app.ActivityOptions;
 import android.app.TaskStackBuilder;
@@ -33,20 +33,15 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowInsets;
 import android.view.WindowManagerGlobal;
 import android.widget.FrameLayout;
 
-import com.android.internal.logging.MetricsLogger;
-import com.android.systemui.R;
-import com.android.systemui.recents.Constants;
-import com.android.systemui.recents.RecentsAppWidgetHostView;
-import com.android.systemui.recents.RecentsConfiguration;
-import com.android.systemui.recents.misc.SystemServicesProxy;
-import com.android.systemui.recents.model.RecentsPackageMonitor;
-import com.android.systemui.recents.model.RecentsTaskLoader;
-import com.android.systemui.recents.model.Task;
-import com.android.systemui.recents.model.TaskStack;
+import com.uu.udemo.recents.Constants;
+import com.uu.udemo.recents.RecentsAppWidgetHostView;
+import com.uu.udemo.recents.RecentsConfiguration;
+import com.uu.udemo.recents.model.RecentsPackageMonitor;
+import com.uu.udemo.recents.model.Task;
+import com.uu.udemo.recents.model.TaskStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +50,8 @@ import java.util.List;
  * This view is the the top level layout that contains TaskStacks (which are laid out according
  * to their SpaceNode bounds.
  */
-public class RecentsView extends FrameLayout {
+public class RecentsView extends FrameLayout implements TaskStackView.TaskStackViewCallbacks,
+        RecentsPackageMonitor.PackageCallbacks {
 
     private static final String TAG = "RecentsView";
 
@@ -77,6 +73,7 @@ public class RecentsView extends FrameLayout {
 
     ArrayList<TaskStack> mStacks;
     List<TaskStackView> mTaskStackViews = new ArrayList<>();
+    RecentsAppWidgetHostView mSearchBar;
     RecentsViewCallbacks mCb;
 
     public RecentsView(Context context) {
@@ -252,7 +249,10 @@ public class RecentsView extends FrameLayout {
         return false;
     }
 
-    /** Requests all task stacks to start their enter-recents animation */
+    /**
+     * Requests all task stacks to start their enter-recents animation
+     * 从home进入最近任务时的动画，这里面遍历，让所有TaskStackView对象执行他们的入场动画
+     * */
     public void startEnterRecentsAnimation(ViewAnimation.TaskViewEnterContext ctx) {
         // We have to increment/decrement the post animation trigger in case there are no children
         // to ensure that it runs
@@ -267,7 +267,11 @@ public class RecentsView extends FrameLayout {
         ctx.postAnimationTrigger.decrement();
     }
 
-    /** Requests all task stacks to start their exit-recents animation */
+    /**
+     * Requests all task stacks to start their exit-recents animation
+     * 从最近任务列表返回桌面时调用
+     * 遍历左右TaskStackView，执行他们自己的退场动画
+     * */
     public void startExitToHomeAnimation(ViewAnimation.TaskViewExitContext ctx) {
         // We have to increment/decrement the post animation trigger in case there are no children
         // to ensure that it runs
@@ -284,6 +288,33 @@ public class RecentsView extends FrameLayout {
         mCb.onExitToHomeAnimationTriggered();
     }
 
+    /** Adds the search bar */
+    public void setSearchBar(RecentsAppWidgetHostView searchBar) {
+        // Remove the previous search bar if one exists
+        if (mSearchBar != null && indexOfChild(mSearchBar) > -1) {
+            removeView(mSearchBar);
+        }
+        // Add the new search bar
+        if (searchBar != null) {
+            mSearchBar = searchBar;
+            addView(mSearchBar);
+        }
+    }
+
+    /** Returns whether there is currently a search bar */
+    public boolean hasValidSearchBar() {
+        return mSearchBar != null && !mSearchBar.isReinflateRequired();
+    }
+
+    /** Sets the visibility of the search bar */
+    public void setSearchBarVisibility(int visibility) {
+        if (mSearchBar != null) {
+            mSearchBar.setVisibility(visibility);
+            // Always bring the search bar to the top
+            mSearchBar.bringToFront();
+        }
+    }
+
     /**
      * This is called with the full size of the window since we are handling our own insets.
      */
@@ -292,12 +323,22 @@ public class RecentsView extends FrameLayout {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
+        // Get the search bar bounds and measure the search bar layout
+        Rect searchBarSpaceBounds = new Rect();
+        if (mSearchBar != null) {
+            mConfig.getSearchBarBounds(width, height, mConfig.systemInsets.top, searchBarSpaceBounds);
+            mSearchBar.measure(
+                    MeasureSpec.makeMeasureSpec(searchBarSpaceBounds.width(), MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(searchBarSpaceBounds.height(), MeasureSpec.EXACTLY));
+        }
+
         Rect taskStackBounds = new Rect();
         mConfig.getAvailableTaskStackBounds(width, height, mConfig.systemInsets.top,
                 mConfig.systemInsets.right, searchBarSpaceBounds, taskStackBounds);
 
         // Measure each TaskStackView with the full width and height of the window since the
         // transition view is a child of that stack view
+        // 用windows的宽和高去计算每一个TaskStackView的size。
         List<TaskStackView> stackViews = getTaskStackViews();
         List<Rect> stackViewsBounds = mLayoutAlgorithm.computeStackRects(stackViews,
                 taskStackBounds);
@@ -321,7 +362,16 @@ public class RecentsView extends FrameLayout {
      */
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        // Layout each TaskStackView with the full width and height of the window since the
+        // Get the search bar bounds so that we lay it out
+        if (mSearchBar != null) {
+            Rect searchBarSpaceBounds = new Rect();
+            mConfig.getSearchBarBounds(getMeasuredWidth(), getMeasuredHeight(),
+                    mConfig.systemInsets.top, searchBarSpaceBounds);
+            mSearchBar.layout(searchBarSpaceBounds.left, searchBarSpaceBounds.top,
+                    searchBarSpaceBounds.right, searchBarSpaceBounds.bottom);
+        }
+
+        // Layout each TaskStackView with the full width and height of the window since the 
         // transition view is a child of that stack view
         List<TaskStackView> stackViews = getTaskStackViews();
         int stackCount = stackViews.size();
@@ -334,15 +384,10 @@ public class RecentsView extends FrameLayout {
         }
     }
 
-    @Override
-    public WindowInsets onApplyWindowInsets(WindowInsets insets) {
-        // Update the configuration with the latest system insets and trigger a relayout
-        mConfig.updateSystemInsets(insets.getSystemWindowInsets());
-        requestLayout();
-        return insets.consumeSystemWindowInsets();
-    }
-
-    /** Notifies each task view of the user interaction. */
+    /**
+     * Notifies each task view of the user interaction.
+     * 让每个TaskStackView去响应用户的互动
+     * */
     public void onUserInteraction() {
         // Get the first stack view
         List<TaskStackView> stackViews = getTaskStackViews();

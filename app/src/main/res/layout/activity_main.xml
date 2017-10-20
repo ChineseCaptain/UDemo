@@ -92,6 +92,22 @@
             android:textAllCaps="false"
             android:text="RecentViews"
             />
+
+        <Button
+            android:id="@+id/btn_stack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="StackView"
+            />
+
+        <Button
+            android:id="@+id/btn_stack_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="StackImage"
+            />
     </LinearLayout>
 
 </ScrollView>
