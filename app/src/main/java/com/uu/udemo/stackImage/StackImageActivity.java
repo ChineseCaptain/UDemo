@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StackImageActivity extends AppCompatActivity {
+public class StackImageActivity extends AppCompatActivity implements ImageLayoutManager.LayoutCallBack {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -62,8 +62,15 @@ public class StackImageActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager;
 
         // 采用不同的LayoutManager初始化
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        layoutManager = new ImageLayoutManager(this);
 
+        //设置LayoutManager
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void loadMoreData() {
+
     }
 }

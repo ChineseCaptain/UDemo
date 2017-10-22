@@ -1,5 +1,7 @@
 package com.uu.udemo.stackImage;
 
+import android.graphics.Rect;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,20 @@ public class ImageLayoutManager extends RecyclerView.LayoutManager {
     /**Item宽和高*/
     private int mDecoratedChildWidth = 0;
     private int mDecoratedChildHeight = 0;
+
+    // 加载时的数值
+    private int minCount = 2;//每次低于多少个开始加载更多数据
+    private float mBaseScale = 0.98f;
+    LayoutCallBack mCallBack;
+
+    public interface LayoutCallBack {
+        void loadMoreData();
+    }
+
+    public ImageLayoutManager(LayoutCallBack callBack) {
+        this.mCallBack = callBack;
+
+    }
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -48,18 +64,31 @@ public class ImageLayoutManager extends RecyclerView.LayoutManager {
         mStartY = (getVerticalSpace() - mDecoratedChildHeight)/2;
 
         // 计算完成后，回收掉这个View
-        detachAndScrapAttachedViews(recycler);
+        removeAndRecycleView(scrap, recycler);
 
-
-
-
+        //开始放置item
+        layoutItems(recycler, state);
     }
 
-    private void layoutItem(RecyclerView.Recycler recycler, RecyclerView.State state) {
+    private void layoutItems(RecyclerView.Recycler recycler, RecyclerView.State state) {
         if (state.isPreLayout()) return;
 
-    }
+        for (int i = 0; i < getItemCount(); i++) {
+            View scrap = recycler.getViewForPosition(i);
+            measureChildWithMargins(scrap, 0, 0);
+            addView(scrap);
 
+            layoutDecorated(scrap, mStartX, mStartY,
+                    mStartX + mDecoratedChildWidth,
+                    mStartY + mDecoratedChildHeight);
+
+            // 进行缩放
+            float scale = (float) Math.pow(mBaseScale, i);
+            ViewCompat.setScaleX(scrap, scale);
+            ViewCompat.setScaleY(scrap, scale);
+        }
+
+    }
 
     /**
      * 获取整个布局的水平空间大小

@@ -2,10 +2,6 @@ package com.uu.udemo.RecyclerSnap;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.uu.udemo.RecyclerSnap.recents.LayoutChildAlgorithm;
-import com.uu.udemo.RecyclerSnap.recents.RecentsConfiguration;
-import com.uu.udemo.RecyclerSnap.recents.TaskStackViewLayoutAlgorithm;
-
 /**
  * description：仿原生最近任务列表
  * autohor：zhangguiyou
@@ -17,16 +13,16 @@ public class RecentsLayoutManager extends RecyclerView.LayoutManager {
     /**
      * 配置参数
      */
-    RecentsConfiguration mConfig;
+//    RecentsConfiguration mConfig;
     /**
      * 布局算法
      */
-    TaskStackViewLayoutAlgorithm taskStackViewLayoutAlgorithm;
-
-    public RecentsLayoutManager() {
-        mConfig = RecentsConfiguration.getInstance();
-        taskStackViewLayoutAlgorithm = new TaskStackViewLayoutAlgorithm(mConfig);
-    }
+//    TaskStackViewLayoutAlgorithm taskStackViewLayoutAlgorithm;
+//
+//    public RecentsLayoutManager() {
+//        mConfig = RecentsConfiguration.getInstance();
+//        taskStackViewLayoutAlgorithm = new TaskStackViewLayoutAlgorithm(mConfig);
+//    }
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
