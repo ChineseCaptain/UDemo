@@ -13,6 +13,14 @@
         >
 
         <Button
+            android:id="@+id/btn_stack_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="StackImage"
+            />
+
+        <Button
             android:id="@+id/btn_snap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,14 +107,6 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="StackView"
-            />
-
-        <Button
-            android:id="@+id/btn_stack_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="StackImage"
             />
     </LinearLayout>
 

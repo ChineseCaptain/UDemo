@@ -1,1 +1,1 @@
-include ':app', ':recentstask'
+include ':app'

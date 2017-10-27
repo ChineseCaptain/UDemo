@@ -33,13 +33,7 @@
         android:sharedUserId="android.uid.system"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".RecyclerSnap.RecyclerSnapActivity" />
         <activity android:name=".anr.AnrActivity" />
         <activity android:name=".loader.LoaderActivity" />
@@ -105,8 +99,15 @@
         </receiver>
         <!-- 配置小米推送 end -->
         <activity android:name=".stackview.StackViewActivity" />
-        <activity android:name=".recents.RecentsActivity" />
-        <activity android:name=".stackImage.StackImageActivity"></activity>
+        <activity android:name=".stackImage.StackImageActivity">
+        </activity>
+        <activity android:name=".match.MatchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

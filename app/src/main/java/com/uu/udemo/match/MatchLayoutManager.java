@@ -1,6 +1,5 @@
-package com.uu.udemo.stackImage;
+package com.uu.udemo.match;
 
-import android.animation.ObjectAnimator;
 import android.graphics.Rect;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +15,7 @@ import android.view.animation.DecelerateInterpolator;
  * date: 2017/10/20.
  */
 
-public class ImageLayoutManager extends RecyclerView.LayoutManager {
-
-    /**起始ItemX、Y坐标*/
-//    private int mStartX = 0;
-//    private int mStartY = 0;
+public class MatchLayoutManager extends RecyclerView.LayoutManager {
 
     /**Item宽和高*/
     private int mDecoratedChildWidth = 0;
@@ -49,7 +44,7 @@ public class ImageLayoutManager extends RecyclerView.LayoutManager {
         void onItemClickListener(int index);
     }
 
-    public ImageLayoutManager(LayoutCallBack callBack) {
+    public MatchLayoutManager(LayoutCallBack callBack) {
         this.mCallBack = callBack;
     }
 
@@ -83,8 +78,10 @@ public class ImageLayoutManager extends RecyclerView.LayoutManager {
         addView(scrap);
         measureChildWithMargins(scrap, 0, 0);
         //计算item的宽高
-        mDecoratedChildWidth = getDecoratedMeasuredWidth(scrap) + 1;
-        mDecoratedChildHeight = getDecoratedMeasuredHeight(scrap);
+        mDecoratedChildWidth = getHorizontalSpace();
+        mDecoratedChildHeight = getVerticalSpace();
+        Log.i("uu", "mDecoratedChildWidth: "+mDecoratedChildWidth);
+        Log.i("uu", "mDecoratedChildHeight: "+mDecoratedChildHeight);
         // 计算完成后，回收掉这个View
         detachAndScrapView(scrap, recycler);
 
@@ -289,7 +286,7 @@ public class ImageLayoutManager extends RecyclerView.LayoutManager {
     /**
      * 获取整个布局的水平空间大小
      */
-    private int getHorizontalSpace() {
+    public int getHorizontalSpace() {
         return getWidth() - getPaddingRight() - getPaddingLeft();
     }
 
@@ -340,8 +337,13 @@ public class ImageLayoutManager extends RecyclerView.LayoutManager {
 
     public float getThreshold() {
         if (mThreshold == 0) {
-            mThreshold = getHorizontalSpace()*.85f;
+//            mThreshold = getHorizontalSpace()*.85f;
+            mThreshold = getHorizontalSpace()*1f;
         }
         return mThreshold;
+    }
+
+    public SparseArray<View> getCacheViews() {
+        return mCacheViews;
     }
 }
