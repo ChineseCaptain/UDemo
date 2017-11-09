@@ -34,7 +34,7 @@ public class MatchActivity extends AppCompatActivity {
         ArrayList<String> datas = new ArrayList<>();
         datas.add("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4253364667,2788064886&fm=27&gp=0.jpg");
         datas.add("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2407254976,468720299&fm=27&gp=0.jpg");
-        datas.add("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2485498041,1848404660&fm=27&gp=0.jpg");
+//        datas.add("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2485498041,1848404660&fm=27&gp=0.jpg");
         datas.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1340136656,28327988&fm=27&gp=0.jpg");
         datas.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1301862478,2558390359&fm=11&gp=0.jpg");
         datas.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2217980408,978627880&fm=27&gp=0.jpg");
