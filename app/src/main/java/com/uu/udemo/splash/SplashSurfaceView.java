@@ -161,7 +161,7 @@ public class SplashSurfaceView extends SurfaceView implements SurfaceHolder.Call
         if (mUri == null || mSurfaceHolder == null) {
             return;
         }
-        stop();
+        release(false);
 
         AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
         am.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
@@ -222,6 +222,20 @@ public class SplashSurfaceView extends SurfaceView implements SurfaceHolder.Call
                 mCurrentState != STATE_PREPARING);
     }
 
+    private void release(boolean cleartargetstate) {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.reset();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+            mCurrentState = STATE_IDLE;
+            if (cleartargetstate) {
+                mTargetState  = STATE_IDLE;
+            }
+            AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+            am.abandonAudioFocus(null);
+        }
+    }
+
     /**
      * 停止播放
      */
@@ -257,7 +271,7 @@ public class SplashSurfaceView extends SurfaceView implements SurfaceHolder.Call
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         mSurfaceHolder = null;
-        stop();
+        release(true);
     }
 
 

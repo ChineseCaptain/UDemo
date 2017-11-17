@@ -47,7 +47,7 @@ public class MatchActivity extends AppCompatActivity {
         layoutManager = new MatchLayoutManager(null);
         recyclerView.setLayoutManager(layoutManager);
 
-        MatchSnapHelper snapHelper = new MatchSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerView);
+//        MatchSnapHelper snapHelper = new MatchSnapHelper();
+//        snapHelper.attachToRecyclerView(recyclerView);
     }
 }

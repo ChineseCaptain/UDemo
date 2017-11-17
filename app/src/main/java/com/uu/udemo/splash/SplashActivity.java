@@ -75,7 +75,8 @@ public class SplashActivity extends AppCompatActivity implements SplashVideoList
         String path;
 //        path = Environment.getExternalStorageDirectory()+"/DCIM/100MEDIA/VIDEO0003.mp4";
 //        path = Environment.getExternalStorageDirectory() + "/DCIM/100MEDIA/VIDEO0004.mp4";
-        path = "android.resource://" + getPackageName() + "/" + R.raw.splash;
+//        path = "android.resource://" + getPackageName() + "/" + R.raw.splash;
+        path = "android.resource://" + getPackageName() + "/" + R.raw.splash_480_250;
         Log.i("uu", "视频路径：" + path);
         File file = new File(path);
         if (file != null) {

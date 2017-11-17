@@ -15,6 +15,7 @@ import com.uu.udemo.async.AsyncActivity;
 import com.uu.udemo.constrain.ConstrainActivity;
 import com.uu.udemo.loader.LoaderActivity;
 import com.uu.udemo.locale.LocaleActivity;
+import com.uu.udemo.match.MatchActivity;
 import com.uu.udemo.push.mi.MiPushActivity;
 import com.uu.udemo.stackImage.StackImageActivity;
 import com.uu.udemo.stackview.StackViewActivity;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_snap, R.id.btn_anr, R.id.btn_loader, R.id.btn_async, R.id.btn_change_locale,
     R.id.btn_constrain, R.id.btn_property, R.id.btn_transition, R.id.btn_mi_push, R.id.btn_stack,
-            R.id.btn_recents, R.id.btn_stack_image})
+            R.id.btn_recents, R.id.btn_stack_image, R.id.btn_match})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_snap:
@@ -90,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_stack_image:
                 Intent itStackImage = new Intent(this, StackImageActivity.class);
                 startActivity(itStackImage);
+                break;
+            case R.id.btn_match:
+                Intent itMatch = new Intent(this, MatchActivity.class);
+                startActivity(itMatch);
                 break;
         }
     }

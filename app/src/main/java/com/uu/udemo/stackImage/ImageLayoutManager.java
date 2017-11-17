@@ -318,6 +318,7 @@ public class ImageLayoutManager extends RecyclerView.LayoutManager {
         }
 
         // 重新进行回收和布局
+        Log.i("uu", "scrollHorizontallyBy");
         recyclerAndLayoutItems(recycler, state);
         return dx;
     }

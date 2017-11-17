@@ -89,6 +89,7 @@ public class MatchLayoutManager extends RecyclerView.LayoutManager {
         initCacheViews(recycler);
 
         //开始放置item
+        Log.i("uu", "onLayoutChildren");
         recyclerAndLayoutItems(recycler, state);
         // 结束布局
         mInLayout = false;
@@ -148,6 +149,7 @@ public class MatchLayoutManager extends RecyclerView.LayoutManager {
             layoutTopView(0, 1);
             layoutBottomView(0, 1 - mBaseScale);
         } else if (mScrollOffset > 0) {// 向左移动
+            Log.i("uu", "向Left滑动");
             if (mCacheViews.get(2) != null) {
                 if (Math.abs(mScrollOffset) < getThreshold()) {
                     // 移动TopView
@@ -163,6 +165,7 @@ public class MatchLayoutManager extends RecyclerView.LayoutManager {
                 recyclerAndLayoutItems(recycler, state);
             }
         }else {// 向右移动
+            Log.i("uu", "向Right滑动");
             if (mCacheViews.get(0) != null) {
                 if (Math.abs(mScrollOffset) < getThreshold()) {
                     // 移动PreviousView
@@ -315,6 +318,9 @@ public class MatchLayoutManager extends RecyclerView.LayoutManager {
         }
 
         // 重新进行回收和布局
+        Log.i("uu", "scrollHorizontallyBy");
+        Log.i("uu", "dx："+dx);
+        Log.i("uu", "state："+state.getTargetScrollPosition());
         recyclerAndLayoutItems(recycler, state);
         return dx;
     }

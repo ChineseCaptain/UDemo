@@ -106,7 +106,8 @@
         <!-- 配置小米推送 end -->
         <activity android:name=".stackview.StackViewActivity" />
         <activity android:name=".stackImage.StackImageActivity"/>
-        <activity android:name=".match.MatchActivity">
+        <activity android:name=".match.MatchActivity"
+            android:exported="true">
         </activity>
         <activity android:name=".splash.SplashActivity"
             android:theme="@style/SplshTheme"
