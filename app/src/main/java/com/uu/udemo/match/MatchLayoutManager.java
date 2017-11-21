@@ -325,7 +325,10 @@ public class MatchLayoutManager extends RecyclerView.LayoutManager {
         return dx;
     }
 
-
+    @Override
+    public void scrollToPosition(int position) {
+        super.scrollToPosition(position);
+    }
 
     /**设置缩放基数
      * @param baseScale
