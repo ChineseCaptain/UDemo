@@ -12,7 +12,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 在SDCard读取数据的权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
@@ -105,13 +104,13 @@
         </receiver>
         <!-- 配置小米推送 end -->
         <activity android:name=".stackview.StackViewActivity" />
-        <activity android:name=".stackImage.StackImageActivity"/>
-        <activity android:name=".match.MatchActivity"
-            android:exported="true">
-        </activity>
-        <activity android:name=".splash.SplashActivity"
-            android:theme="@style/SplshTheme"
-            >
+        <activity android:name=".stackImage.StackImageActivity" />
+        <activity
+            android:name=".match.MatchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplshTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -133,6 +132,12 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/config" />
         </service>
+
+        <activity
+            android:name=".CountDown.CountDownActivity"
+            android:exported="true" />
+        <activity android:name=".itemtouch.ItemTouchActivity"
+            android:exported="true" ></activity>
     </application>
 
 </manifest>

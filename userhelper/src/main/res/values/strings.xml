@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">UserHelper</string>
+    <string name="desc_skip">自动点击跳过</string>
+    <string name="desc_allow">自动点击允许安装</string>
+</resources>

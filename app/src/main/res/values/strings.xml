@@ -37,4 +37,6 @@
     <string name="set_accept_time_success"> Set accept time %1$s - %2$s success.</string>
     <string name="set_accept_time_fail"> Set accept time fail for %1$s.</string>
     <!--小米推送 end-->
+
+    <string name="accessibility_description">自动点击ok</string>
 </resources>

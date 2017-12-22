@@ -8,11 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.uu.udemo.CountDown.CountDownActivity;
 import com.uu.udemo.RecyclerSnap.RecyclerSnapActivity;
 import com.uu.udemo.animator.PropertyAnimatorActivity;
 import com.uu.udemo.anr.AnrActivity;
 import com.uu.udemo.async.AsyncActivity;
 import com.uu.udemo.constrain.ConstrainActivity;
+import com.uu.udemo.itemtouch.ItemTouchActivity;
 import com.uu.udemo.loader.LoaderActivity;
 import com.uu.udemo.locale.LocaleActivity;
 import com.uu.udemo.match.MatchActivity;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_snap, R.id.btn_anr, R.id.btn_loader, R.id.btn_async, R.id.btn_change_locale,
     R.id.btn_constrain, R.id.btn_property, R.id.btn_transition, R.id.btn_mi_push, R.id.btn_stack,
-            R.id.btn_recents, R.id.btn_stack_image, R.id.btn_match})
+            R.id.btn_recents, R.id.btn_stack_image, R.id.btn_match, R.id.btn_count_down, R.id.btn_recycler_item})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_snap:
@@ -95,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_match:
                 Intent itMatch = new Intent(this, MatchActivity.class);
                 startActivity(itMatch);
+                break;
+            case R.id.btn_count_down:
+                Intent itDown = new Intent(this, CountDownActivity.class);
+                startActivity(itDown);
+                break;
+            case R.id.btn_recycler_item:
+                Intent itItemTouch = new Intent(this, ItemTouchActivity.class);
+                startActivity(itItemTouch);
                 break;
         }
     }

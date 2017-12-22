@@ -116,6 +116,22 @@
             android:textAllCaps="false"
             android:text="佳缘缘分"
             />
+
+        <Button
+            android:id="@+id/btn_count_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="倒计时"
+            />
+
+        <Button
+            android:id="@+id/btn_recycler_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="Recycler Item Touch"
+            />
     </LinearLayout>
 
 </ScrollView>
